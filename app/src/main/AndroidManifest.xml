@@ -1,0 +1,21 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="at.zweng.xposed.euimusiccontrols">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true">
+
+        <meta-data
+            android:name="xposedmodule"
+            android:value="true" />
+        <meta-data
+            android:name="xposeddescription"
+            android:value="Overrides the Music control buttons in EUI's control center, so that they control all kind of music players (like the headset buttons)." />
+        <meta-data
+            android:name="xposedminversion"
+            android:value="82" />
+    </application>
+
+</manifest>
