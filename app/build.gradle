@@ -1,6 +1,35 @@
 apply plugin: 'com.android.application'
 
 android {
+    // get signing config from properties:
+    def getStore = { ->
+        def result = project.hasProperty('storeFile') ? storeFile : "null"
+        return result
+    }
+
+    def getStorePassword = { ->
+        def result = project.hasProperty('storePassword') ? storePassword : ""
+        return result
+    }
+
+    def getKeyAlias = { ->
+        def result = project.hasProperty('keyAlias') ? keyAlias : ""
+        return result
+    }
+
+    def getKeyPassword = { ->
+        def result = project.hasProperty('keyPassword') ? keyPassword : ""
+        return result
+    }
+
+    signingConfigs {
+        release {
+            storeFile file(getStore())
+            storePassword getStorePassword()
+            keyAlias getKeyAlias()
+            keyPassword getKeyPassword()
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion "25.0.0"
     defaultConfig {
@@ -13,10 +42,12 @@ android {
     }
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 
@@ -25,7 +56,7 @@ repositories {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -33,3 +64,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     provided 'de.robv.android.xposed:api:82'
 }
+
+
