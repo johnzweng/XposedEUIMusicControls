@@ -8,15 +8,17 @@ This is a module for the [Xposed Framework](http://repo.xposed.info/). You need 
 
 ### What this module can do for you:
 
-This module overrides the function of the three media control buttons in the EUI control center: **Previous, Play, Next**.
+This module overrides the function of the three media control buttons in the EUI control center: **Previous | Play | Next**:
 
-Normally these buttons only control the EUI Media Player. This Xposed module changes this behaviour, so that these buttons behave exactly like the Media Control buttons on any headset and broadcasts instead key events with these keycodes:
+![Screenshot of control center](screenshots/screenshot_media_control_eui_200px.jpg?raw=true)
+
+Normally these buttons only control the EUI Media Player. This Xposed module changes this behaviour, so that these buttons behave exactly like the Media Control buttons on any headset and broadcasts instead standardized Android `ACTION_MEDIA_BUTTON` Intents with these keycodes:
 
 - `KEYCODE_MEDIA_PREVIOUS`
 - `KEYCODE_MEDIA_PLAY_PAUSE`
 - `KEYCODE_MEDIA_NEXT`
 
-So any media app that supports the buttons on an external headset, should also be able to react to the button events from the EUI Control Center.
+This means the three buttons will behave exactly like buttons on any external bluetooth headset and any media app that supports headset buttons will be able to react to these buttons.
 
 
 ### Supported EUI Version:
@@ -36,3 +38,8 @@ EUI MusicControls: successfully replaced method handleNext() :)
 EUI MusicControls: successfully replaced method handlePrevious() :)
 ```
 
+
+### Support:
+I won't give much support on this. If you have any questions (or also feedback) you can visit the [related thread on the XDA developers forum](http://forum.xda-developers.com/le-pro3/development/mod-control-3rd-party-music-players-t3500615). 
+
+Please give also feedback there, if you find the module working for other EUI versions. Thanks. :)
